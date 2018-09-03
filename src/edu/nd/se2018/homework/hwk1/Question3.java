@@ -19,22 +19,24 @@ public class Question3 {
             for (int j = numbers.length - 1; j >= 0; j--) {  				//start from the end of the array and work toward left
                 if (numbers[lengthNow] == numbers[j]) {		
                     if (isMirror) {
-                        tempLength++;										//if it is part of mirror, add 1 to length
-                        maxLength = Math.max(tempLength, maxLength);		//update maxLength if current length is larger
+                        										//if it is part of mirror, add 1 to length
+                        maxLength = Math.max(tempLength+1, maxLength);
+                        tempLength++;												//update maxLength if current length is larger
                     }
                     isMirror = true;
                     lengthNow++;
-                    if (lengthNow >= numbers.length)							//end if we have gone too far in the string
+                    if (lengthNow >= numbers.length)						//end if we have gone too far in the string
                         break;
                 }
                 else if (numbers[j] != numbers[i]) {						//if we reach the end of the mirror, end the mirror count
                 	if (isMirror) {
-                		isMirror = false;
+                		tempLength = 1;		
+ 
                 		lengthNow = i;											
-                		tempLength = 1;										//reset the temporary mirror length to 1 (potential start of mirror)
+                		isMirror = false;									//reset the temporary mirror length to 1 (potential start of mirror)
                 	}
                 }
-                else if (j == lengthNow || j == (lengthNow+1)) {					//for an even or odd length and we reached the middle, it is the end of the mirror and exit loop
+                else if (j == (lengthNow + 1) || j == (lengthNow)) {		//for an even or odd length and we reached the middle, it is the end of the mirror and exit loop
                     isMirror = false;
                     break;
                 }
