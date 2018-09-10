@@ -27,7 +27,7 @@ public class Race {
 			}
 			System.out.println("");
 			try {
-				Thread.sleep(10);
+				Thread.sleep(50);
 			}
 			catch(InterruptedException ex) {
 					//do nothing
