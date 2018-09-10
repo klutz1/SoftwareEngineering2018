@@ -2,6 +2,7 @@ package edu.nd.se2018.homework.homework3;
 
 //ABOUT:
 //This tests to make sure that there is always more than one horse in a race
+//If there is less than 2 horses, return an error
 
 import java.util.ArrayList;
 import java.util.List;
