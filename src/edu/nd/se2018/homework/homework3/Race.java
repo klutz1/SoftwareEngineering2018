@@ -3,35 +3,26 @@ package edu.nd.se2018.homework.homework3;
 import java.util.*;
 public class Race {
 	
-	private Horse h1;
-	private Horse h2;
-	
-	List<Horse> horseList = new ArrayList<Horse>();
-	
-	public void start() {	
+	public void start(List<Horse> horseList) {	
+		String horseWinner;
+		for (Horse horse: horseList) {
+			if (horse.maxSpeed <= 0.0) {
+				System.out.println("The horse's speed must be greater than 0");
+				System.exit(0);
+			}
+		}
+		horseWinner = runRace(horseList);
+		System.out.println(horseWinner + " is the winner.");
+	}
+	public String runRace(List<Horse> horseList) {
 		boolean winner = false;
-		
-		//add horses to race
-		Horse h1 = new Horse("Blizzard", 3, 25, new SlowStartStrategy());
-		Horse h2 = new Horse("Flicker", 2, 25, new SteadyRunStrategy());
-		Horse h3 = new Horse("Claire", 3, 22, new EarlySprintStrategy());
-		
-		//add horses to list 
-		horseList.add(h1);
-		horseList.add(h2);
-		horseList.add(h3);
-		
 		while (winner == false) {
-			
 			for (Horse h: horseList) {
 				h.update();
-				
 				if (h.getCurrPos() >= 10.0) {
 					winner = true;
-					System.out.println(h.name+" is the winner.");
-					break;
+					return h.getName();
 				}		
-				
 			}
 			System.out.println("");
 			try {
@@ -40,7 +31,8 @@ public class Race {
 			catch(InterruptedException ex) {
 					//do nothing
 			}
-		}	
+		}
+		return "";
 	}
 	
 	
