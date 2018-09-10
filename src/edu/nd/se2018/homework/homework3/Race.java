@@ -3,16 +3,17 @@ package edu.nd.se2018.homework.homework3;
 import java.util.*;
 public class Race {
 	
-	public void start(List<Horse> horseList) {	
+	public String start(List<Horse> horseList) {	
 		String horseWinner;
 		for (Horse horse: horseList) {
 			if (horse.maxSpeed <= 0.0) {
 				System.out.println("The horse's speed must be greater than 0");
-				System.exit(0);
+				return "error";
 			}
 		}
 		horseWinner = runRace(horseList);
 		System.out.println(horseWinner + " is the winner.");
+		return "";
 	}
 	public String runRace(List<Horse> horseList) {
 		boolean winner = false;
