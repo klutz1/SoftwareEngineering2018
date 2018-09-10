@@ -30,7 +30,6 @@ public class RaceTest4 {
 		Horse h1 = new Horse("Crackle", 30, new SlowStartStrategy());
 		
 		
-		//h1.setStrategy(new EarlySprintStrategy());
 		horseList.add(h1);
 
 		
