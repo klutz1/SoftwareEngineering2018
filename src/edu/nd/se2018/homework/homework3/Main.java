@@ -12,11 +12,14 @@ public class Main {												//Main executes a sample race
 		Horse h1 = new Horse("Blizzard", 25, new SlowStartStrategy());
 		Horse h2 = new Horse("Snap", 35, new SteadyRunStrategy());
 		Horse h3 = new Horse("Katie", 22, new EarlySprintStrategy());
-		
+		Horse h4 = new Horse("Duncan", 23, new EarlySprintStrategy());
+		Horse h5 = new Horse("McGlinn", 27, new SteadyRunStrategy());
 		//add each of the horses to the list
 		horseList.add(h1);
 		horseList.add(h2);
 		horseList.add(h3);
+		horseList.add(h4);
+		horseList.add(h5);
 		
 		Race myrace = new Race();
 		
