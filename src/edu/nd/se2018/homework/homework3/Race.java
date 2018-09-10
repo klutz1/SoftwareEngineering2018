@@ -5,10 +5,18 @@ public class Race {
 	
 	//check for errors before starting race
 	public String start(List<Horse> horseList) {	
+		if (horseList.size() < 2) {
+			System.out.println("There must be more than one horse in a race");
+			return "error";
+		}
 		String horseWinner;
 		for (Horse horse: horseList) {
 			if (horse.getMaxSpeed() <= 0.0) {
 				System.out.println("The horse's speed must be greater than 0");
+				return "error";
+			}
+			if (horse.getName() == "") {
+				System.out.println("The horse's name cannot be empty");
 				return "error";
 			}
 		}

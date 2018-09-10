@@ -48,7 +48,7 @@ public class RaceTest2 {
 
 	@Test
 	public void test() {
-		System.out.println("Running test 1");
+		System.out.println("Running test 2");
 	}
 	
 
