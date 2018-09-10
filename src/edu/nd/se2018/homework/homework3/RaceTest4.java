@@ -31,7 +31,6 @@ public class RaceTest4 {
 		
 		
 		horseList.add(h1);
-
 		
 		Race myrace = new Race();
 		assert(myrace.start(horseList) == "error");
