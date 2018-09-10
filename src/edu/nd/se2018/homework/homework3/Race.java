@@ -7,7 +7,7 @@ public class Race {
 	public String start(List<Horse> horseList) {	
 		String horseWinner;
 		for (Horse horse: horseList) {
-			if (horse.maxSpeed <= 0.0) {
+			if (horse.getMaxSpeed() <= 0.0) {
 				System.out.println("The horse's speed must be greater than 0");
 				return "error";
 			}

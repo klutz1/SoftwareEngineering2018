@@ -8,7 +8,7 @@ public class Main {												//Main executes a sample race
 		String output;
 		
 		//data structure to store horses
-		List<Horse> horseList = new ArrayList<Horse>();
+	    List<Horse> horseList = new ArrayList<Horse>();
 		Horse h1 = new Horse("Blizzard", 25, new SlowStartStrategy());
 		Horse h2 = new Horse("Snap", 35, new SteadyRunStrategy());
 		Horse h3 = new Horse("Katie", 22, new EarlySprintStrategy());

@@ -3,7 +3,7 @@ package edu.nd.se2018.homework.homework3;
 public class Horse {
 	//Horse characteristics are private member variables
 	private String name; 
-	double maxSpeed;
+	private double maxSpeed;
 	private GeneralStrategy theStrategy;
 	private Double prevPos;
 	private Double currPos;
@@ -17,6 +17,7 @@ public class Horse {
 		this.currPos = 0.0;
 		this.prevPos = 0.0;
 	}
+	
 	
 	//setName method outside constructor
 	public void setName(String n) {
@@ -57,6 +58,11 @@ public class Horse {
 	public GeneralStrategy getStrategy() {
 		return this.theStrategy;
 	} 
+	
+	//return max speed
+	public double getMaxSpeed() {
+		return this.maxSpeed;
+	}
 	
 	//this is called in each loop iteration
 	//position is calculated by multiplying miles per hour by 25.0 seconds
