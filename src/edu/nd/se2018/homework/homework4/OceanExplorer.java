@@ -27,9 +27,9 @@ public class OceanExplorer extends Application {
 	Scene scene;
 	OceanMap oMap;
 	Ship ship;
-	PirateShip pirate1;
+	PirateShip pirate1, pirate2;
 	Image shipImage, pirateShipImage;
-	ImageView shipImageView, pirateShipImageView;
+	ImageView shipImageView, pirateShipImageView, pirateShipImageView2;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -45,6 +45,7 @@ public class OceanExplorer extends Application {
 		ship = new Ship(startPosition.x, startPosition.y, oMap);
 		
 		pirate1 = new PirateShip(4, 4, oMap);
+		pirate2 = new PirateShip(1, 1, oMap);
 		
 		
 		loadImages();
@@ -54,6 +55,7 @@ public class OceanExplorer extends Application {
 		oceanStage.show();
 		
 		ship.addObserver(pirate1);
+		ship.addObserver(pirate2);
 
 		startSailing(ship, pirate1);
 	}
@@ -67,9 +69,13 @@ public class OceanExplorer extends Application {
 		
 		Image pirateShipImage = new Image("images\\pirateship.gif", 50, 50, true, true);
 		pirateShipImageView = new ImageView(pirateShipImage);
+		pirateShipImageView2 = new ImageView(pirateShipImage);
 		pirateShipImageView.setX(oMap.getPirateLocation(pirate1).x*scalingFactor);
 		pirateShipImageView.setY(oMap.getPirateLocation(pirate1).y*scalingFactor);
+		pirateShipImageView2.setX(oMap.getPirateLocation(pirate2).x*scalingFactor);
+		pirateShipImageView2.setY(oMap.getPirateLocation(pirate2).y*scalingFactor);
 		root.getChildren().add(pirateShipImageView);
+		root.getChildren().add(pirateShipImageView2);
 		
 
 	}
@@ -100,7 +106,9 @@ public class OceanExplorer extends Application {
 			
 			pirateShipImageView.setX(oMap.getPirateLocation(pirateship).x*scalingFactor);
 			pirateShipImageView.setY(oMap.getPirateLocation(pirateship).y*scalingFactor);
-
+			
+			pirateShipImageView2.setX(oMap.getPirateLocation(pirate2).x*scalingFactor);
+			pirateShipImageView2.setY(oMap.getPirateLocation(pirate2).y*scalingFactor);
 			}
 		});
 	}
