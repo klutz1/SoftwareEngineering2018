@@ -15,19 +15,29 @@ public class Ship {
 		this.oceanmap = oceanmap;
 	}
 	public void goNorth() {
-		yCell--;
+		if (getShipLocation().y > 0 && oceanmap.oceanGrid[xCell][yCell-1] == 0) {
+			yCell--;
+		}
 	}
 	
 	public void goSouth() {
-		yCell++;
+		if (getShipLocation().y < 9 && oceanmap.oceanGrid[xCell][yCell+1] == 0) {
+			yCell++;
+		}
 	}
 	
 	public void goEast() {
-		xCell++;
+		if (getShipLocation().x < 9 && oceanmap.oceanGrid[xCell+1][yCell] == 0) {
+			xCell++;
+		}
+		
 	}
 	
 	public void goWest() {
-		xCell--;
+		if (getShipLocation().x > 0 && oceanmap.oceanGrid[xCell-1][yCell] == 0) {
+			xCell--;
+		}
+		
 	}
 	
 	public Point getShipLocation(){

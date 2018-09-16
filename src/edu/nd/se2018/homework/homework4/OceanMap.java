@@ -13,10 +13,11 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 
+
 public class OceanMap {
 	final int size = 25;
 	
-
+	
 	public OceanMap(int size, int islandNum) {
 		size = this.size;
 	}
@@ -27,19 +28,40 @@ public class OceanMap {
 	
 	ObservableList<Node> root;
 	public void drawMap(ObservableList<javafx.scene.Node> root) {
-		
+		//setIslands();
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				Rectangle rect = new Rectangle(i*scale, j*scale, scale, scale);
-				rect.setStroke(Color.BLACK);
-				rect.setFill(Color.PALETURQUOISE);
-				root.add(rect);
 				oceanGrid[i][j] = 0;
+			}
+		}
+			
+		int k = 0;
+		while (k < 10) {
+			Random rand = new Random();
+			int x = rand.nextInt(9);
+			int y = rand.nextInt(9);
+			if (oceanGrid[x][y] == 0) {
+				oceanGrid[x][y] = 2;
+				k++;
+			}
+		}
+		for (int h = 0; h < size; h++) {
+			for (int d = 0; d < size; d++) {
+				Rectangle rect = new Rectangle(h*scale, d*scale, scale, scale);
+				rect.setStroke(Color.BLACK);
+				if (oceanGrid[h][d] == 2) {
+					rect.setFill(Color.GREEN);
+					root.add(rect);
+				}
+				else {
+					rect.setFill(Color.PALETURQUOISE);
+					root.add(rect);
+				}
+				
 			}
 		}
 	}
 
-	
 	public Point getShipLocation(Ship ship) {
 		return ship.getShipLocation();
 	}
