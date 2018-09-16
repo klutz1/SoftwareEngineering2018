@@ -12,11 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
-
-
 public class OceanMap {
 	final int size = 25;
-	
 	
 	public OceanMap(int size, int islandNum) {
 		size = this.size;
@@ -62,11 +59,24 @@ public class OceanMap {
 		}
 	}
 
+	public Point getPirateLocation(PirateShip pirate) {
+		return pirate.getPirateLocation();
+	}
+	
 	public Point getShipLocation(Ship ship) {
 		return ship.getShipLocation();
 	}
 	public Point getStartPoint(){
-		return new Point(5,5);
+		Random rand = new Random();
+		boolean placed = false;
+		while (!placed) {
+			int x = rand.nextInt(9);
+			int y = rand.nextInt(9);
+			if (oceanGrid[x][y] == 0) {
+				return new Point(x, y);
+			}
+		}
+		return new Point(0,0);
 	}
 
 }

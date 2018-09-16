@@ -27,13 +27,13 @@ public class OceanExplorer extends Application {
 	Scene scene;
 	OceanMap oMap;
 	Ship ship;
-	Image shipImage;
-	ImageView shipImageView;
+	PirateShip pirate1;
+	Image shipImage, pirateShipImage;
+	ImageView shipImageView, pirateShipImageView;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
 		oMap = new OceanMap(dimensions, islandCount);
-		
 		
 		root = new AnchorPane();
 		oMap.drawMap(root.getChildren());
@@ -43,25 +43,37 @@ public class OceanExplorer extends Application {
 		
 		
 		ship = new Ship(startPosition.x, startPosition.y, oMap);
-		loadImage();
+		
+		pirate1 = new PirateShip(4, 4, oMap);
+		
+		
+		loadImages();
 		
 		oceanStage.setTitle("OceanExplorer");
 		oceanStage.setScene(scene);
 		oceanStage.show();
 		
-		startSailing(ship);
+		ship.addObserver(pirate1);
+
+		startSailing(ship, pirate1);
 	}
 	
-	public void loadImage() {
+	public void loadImages() {
 		Image shipImage = new Image("images\\ColumbusShip.png", 50, 50, true, true);
 		shipImageView = new ImageView(shipImage);
 		shipImageView.setX(oMap.getShipLocation(ship).x*scalingFactor);
 		shipImageView.setY(oMap.getShipLocation(ship).y*scalingFactor);
 		root.getChildren().add(shipImageView);
-		System.out.println("imageadded");
 		
+		Image pirateShipImage = new Image("images\\pirateship.gif", 50, 50, true, true);
+		pirateShipImageView = new ImageView(pirateShipImage);
+		pirateShipImageView.setX(oMap.getPirateLocation(pirate1).x*scalingFactor);
+		pirateShipImageView.setY(oMap.getPirateLocation(pirate1).y*scalingFactor);
+		root.getChildren().add(pirateShipImageView);
+		
+
 	}
-	private void startSailing(Ship ship) {
+	private void startSailing(Ship ship, PirateShip pirateship) {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 		
 		@Override
@@ -85,6 +97,10 @@ public class OceanExplorer extends Application {
 				}
 			shipImageView.setX(oMap.getShipLocation(ship).x*scalingFactor);
 			shipImageView.setY(oMap.getShipLocation(ship).y*scalingFactor);
+			
+			pirateShipImageView.setX(oMap.getPirateLocation(pirateship).x*scalingFactor);
+			pirateShipImageView.setY(oMap.getPirateLocation(pirateship).y*scalingFactor);
+
 			}
 		});
 	}
