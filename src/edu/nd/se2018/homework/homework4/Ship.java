@@ -34,4 +34,4 @@ public class Ship {
 		return new Point(xCell,yCell);
 	}
 	
-}
+} 
