@@ -44,11 +44,12 @@ public class OceanExplorer extends Application {
 		//ship starts in a random location not on an island
 		ship = new Ship(startPosition.x, startPosition.y, oMap);	
 		
-		//Random rand = new Random();
+		Point pirate1Pos = oMap.getPirate1StartPoint();
+		Point pirate2Pos = oMap.getPirate2StartPoint();
+		pirate1 = new PirateShip(pirate1Pos.x, pirate1Pos.y, oMap);
+		pirate2 = new PirateShip(pirate2Pos.x, pirate2Pos.y, oMap);			
 		
-		pirate1 = new PirateShip(4, 4, oMap);
-		pirate2 = new PirateShip(1, 1, oMap);			
-		
+		//call the function to place images on the grid
 		loadImages();
 		
 		oceanStage.setTitle("OceanExplorer");

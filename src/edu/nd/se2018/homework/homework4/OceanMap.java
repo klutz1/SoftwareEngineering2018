@@ -22,6 +22,11 @@ public class OceanMap {
 	
 	final int scale = 50;
 	
+	private int startingX;
+	private int startingY;
+	private int p1x;
+	private int p1y;
+	
 	ObservableList<Node> root;
 	public void drawMap(ObservableList<javafx.scene.Node> root) {
 		
@@ -81,10 +86,57 @@ public class OceanMap {
 			int x = rand.nextInt(9);
 			int y = rand.nextInt(9);
 			if (oceanGrid[x][y] == 0) {
+				startingX = x;
+				startingY = y;
 				return new Point(x, y);
 			}
 		}
 		return new Point(0,0);
 	}
+	
+	//place pirate 1, but not on top of another ship or island
+	public Point getPirate1StartPoint() {
+		Random rand = new Random();
+		boolean pl = false;
+		while (!pl) {
+			int x = rand.nextInt(9);
+			int y = rand.nextInt(9);
+			if (oceanGrid[x][y] == 0) {
+				if (x == startingX && y == startingY) {
+					//do nothing: iterate through loop again
+					//Columbus ship is already located here
+				}
+				else {
+					p1x = x; 
+					p1y = y;
+					return new Point(x, y);
+				}
+			}
+		}
+		return new Point(0,0);
+	}
 
+	//place second pirate randomly, but not on top of island or another ship
+	public Point getPirate2StartPoint() {
+		Random rand = new Random();
+		boolean p = false;
+		while (!p) {
+			int x = rand.nextInt(9);
+			int y = rand.nextInt(9);
+			if (oceanGrid[x][y] == 0) {
+				if (x == startingX && y == startingY) {
+					//do nothing; Columbus ship is located here
+					
+				}
+				else if (x == p1x && y == p1y) {
+					//do nothing; the other pirate is already located here
+				}
+				else {
+					//if no conflict, place the second pirate ship
+					return new Point(x, y);
+				}
+			}
+		}
+		return new Point(0,0);
+	}
 }
