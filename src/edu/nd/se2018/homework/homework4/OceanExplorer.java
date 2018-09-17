@@ -85,7 +85,6 @@ public class OceanExplorer extends Application {
 		root.getChildren().add(pirateShipImageView);
 		root.getChildren().add(pirateShipImageView2);
 		
-
 	}
 	private void startSailing(Scene scene) {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {

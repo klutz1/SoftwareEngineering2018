@@ -13,11 +13,6 @@ import javafx.scene.shape.Rectangle;
 public class OceanMap {
 	final int size = 25;
 	
-	//Constructor
-	public OceanMap(int size, int islandNum) {
-		size = this.size;
-	}
-	
 	int[][] oceanGrid = new int[25][25];
 	
 	final int scale = 50;
@@ -26,8 +21,14 @@ public class OceanMap {
 	private int startingY;
 	private int p1x;
 	private int p1y;
-	
 	ObservableList<Node> root;
+		
+	//Constructor
+	public OceanMap(int size, int islandNum) {
+		size = this.size;
+	}
+	
+
 	public void drawMap(ObservableList<javafx.scene.Node> root) {
 		
 		//first, initialize all grid values to zero
