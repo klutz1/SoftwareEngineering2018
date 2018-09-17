@@ -1,20 +1,19 @@
-package edu.nd.se2018.homework.homework4;
+//This class initializes the grid values and returns the current location of the pirate and Columbus ships
 
+package edu.nd.se2018.homework.homework4;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.xml.soap.Node;
-
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import java.util.Random;
 
 public class OceanMap {
 	final int size = 25;
 	
+	//Constructor
 	public OceanMap(int size, int islandNum) {
 		size = this.size;
 	}
@@ -25,13 +24,15 @@ public class OceanMap {
 	
 	ObservableList<Node> root;
 	public void drawMap(ObservableList<javafx.scene.Node> root) {
-		//setIslands();
+		
+		//first, initialize all grid values to zero
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				oceanGrid[i][j] = 0;
 			}
 		}
-			
+		
+		//place the islands on the grid next--set value to 2
 		int k = 0;
 		while (k < 10) {
 			Random rand = new Random();
@@ -42,6 +43,9 @@ public class OceanMap {
 				k++;
 			}
 		}
+		
+		//if value of grid = 0: ocean
+		//if value of grid = 2: island
 		for (int h = 0; h < size; h++) {
 			for (int d = 0; d < size; d++) {
 				Rectangle rect = new Rectangle(h*scale, d*scale, scale, scale);
@@ -59,13 +63,17 @@ public class OceanMap {
 		}
 	}
 
+	//return current pirate location as x,y coordinates
 	public Point getPirateLocation(PirateShip pirate) {
 		return pirate.getPirateLocation();
 	}
 	
+	//return current ship location as x,y coordinates
 	public Point getShipLocation(Ship ship) {
 		return ship.getShipLocation();
 	}
+	
+	//place the ship in a random ocean location
 	public Point getStartPoint(){
 		Random rand = new Random();
 		boolean placed = false;

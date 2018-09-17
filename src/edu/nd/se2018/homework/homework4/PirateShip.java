@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.awt.Point;
 
+//Pirates observe the ship
 public class PirateShip implements Observer {
 	Point ColumbusPosition;
 	Point piratePosition;
@@ -16,6 +17,10 @@ public class PirateShip implements Observer {
 		this.oceanmap = oceanmap;
 	}
 	
+	//Pirate movement is different than ship movement
+	//This is why unique methods are used in PirateShip than in Ship
+	//Pirates move one square at a time only if there is no island
+	//standing in their way
 	public void movePirateShip() {
 		boolean moved = false;
 		if (ColumbusPosition.x < px && moved == false) {
@@ -60,10 +65,12 @@ public class PirateShip implements Observer {
 		px--;
 	}
 	
+	//return the current pirate location
 	public Point getPirateLocation(){
 		return new Point(px,py);
 	}
 	
+	//if the ship moves, move the pirate ship if possible
 	@Override
 	public void update(Observable s, Object arg1) {
 		if (s instanceof Ship){
