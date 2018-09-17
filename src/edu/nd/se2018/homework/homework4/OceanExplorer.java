@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 
 public class OceanExplorer extends Application {
 
-	//boolean[][] islandMap;
 	//10 x 10 grid of squares
 	final int dimensions = 10;		
 	
