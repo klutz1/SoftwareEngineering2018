@@ -36,6 +36,14 @@ public class CarFactory {
 			double speedVariable = (Math.random() * 10)/10;
 			car.setSpeed((2-speedVariable)*1.5); 
 			
+			//determine if this car can move left 
+			if (location.x > 700) {
+				if (Math.random()*10 < 3) {
+					car.assignLeftMover();
+				}
+			}
+			
+			
 			// All cars created by this factory must be aware of crossing gates in the road
 			for(CrossingGate gate: gates){
 				gate.addObserver(car);

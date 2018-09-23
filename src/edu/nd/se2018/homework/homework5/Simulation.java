@@ -94,6 +94,7 @@ public class Simulation extends Application{
 			if (road.getCarFactory() != null){
 				if ((int)(Math.random() * 100) == 15){
 					Car car = road.getCarFactory().buildCar();
+					road.addNumCarsToRoad();
 					if (car != null){
 						root.getChildren().add(car.getImageView());
 					}

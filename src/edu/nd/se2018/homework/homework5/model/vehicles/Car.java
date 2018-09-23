@@ -21,6 +21,7 @@ public class Car extends Observable implements IVehicle, Observer{
 	private boolean gateDown = false;
 	private double leadCarY = -1;  // Current Y position of car directly infront of this one
 	private double speed = 0.5;
+	private boolean leftMover = false;
 		
 	/**
 	 * Constructor
@@ -34,9 +35,16 @@ public class Car extends Observable implements IVehicle, Observer{
 		ivCar = new ImageView(CarImageSelector.getImage());
 		ivCar.setX(getVehicleX());
 		ivCar.setY(getVehicleY());
+		leftMover = false;
 	}
-		
+	
+	public void assignLeftMover() {
+		leftMover = true;
+		System.out.println("left mover assigned!");
+	}		
+	
 	@Override
+	
 	public Node getImageView() {
 		return ivCar;
 	}
@@ -53,19 +61,38 @@ public class Car extends Observable implements IVehicle, Observer{
 	}
 	
 	public void move(){
-		boolean canMove = true; 
+		boolean canMoveVertical = true; 
+		boolean canMoveLeft = false;
 		
 		// First case.  Car is at the front of the stopping line.
 		if (gateDown && getVehicleY() < 430 && getVehicleY()> 390)
-			canMove = false;
+			canMoveVertical = false;
 		
 		// Second case. Car is too close too other car.
 		if (leadCarY != -1  && getDistanceToLeadCar() < 50)
-			canMove = false;
+			canMoveVertical = false;
 		
-		if (canMove){
+		if (this.leftMover = true) {
+			
+			//System.out.println("the problem is here");
+			if (getVehicleY() < 300 && getVehicleY() > 295) {
+				canMoveVertical = false;
+				currentX -= speed;
+				ivCar.setX(currentX);
+			}
+
+		}
+		
+		if (canMoveVertical) {
 			currentY+=speed;
 			ivCar.setY(currentY);
+			setChanged();
+			notifyObservers();
+		}
+		if (canMoveLeft) {
+			currentX-=speed;
+			ivCar.setX(currentX);
+			speed = 0;
 			setChanged();
 			notifyObservers();
 		}

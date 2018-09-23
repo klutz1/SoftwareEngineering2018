@@ -22,16 +22,18 @@ public class Road {
 	Collection<CrossingGate> gates;
 	boolean clearEnds = false;
 	int roadSize;
+	int numCarsOnRoad;
 	
 	public Road(){}
 	
-	public Road(Point start, Point end, Direction direction, boolean buildCarFactory, boolean clearEnds){
+	public Road(Point start, Point end, Direction direction, boolean clearEnds, int numCarsOnRoad){
 		startX = start.x;
 		startY = start.y;
 		endX = end.x;
 		endY = end.y;
 		roadSize = 18;
 		
+		numCarsOnRoad = 0;
 		this.direction = direction;
 		gates = new Vector<CrossingGate>();
 		this.clearEnds = clearEnds;
@@ -71,6 +73,11 @@ public class Road {
 	public int getEndY(){
 		return endY;
 	} 
+	
+	public void addNumCarsToRoad() {
+		this.numCarsOnRoad++;
+		System.out.println("Numer of cars on road: "+ this.numCarsOnRoad);
+	}
 	
 	public Direction getDirection(){
 		return direction;
