@@ -68,4 +68,7 @@ public class MapBuilder {
 	public RailwayTracks getTrack(String name){
 		return tracks.get("Royal");
 	}
+	public RailwayTracks getNewTrack(String name){
+		return tracks.get("Katie");
+	}
 }

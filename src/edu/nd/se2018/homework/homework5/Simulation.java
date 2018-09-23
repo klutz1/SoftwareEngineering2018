@@ -45,6 +45,10 @@ public class Simulation extends Application{
 		Train train = new Train(track.getEndX()+100,track.getEndY()-25);
 		root.getChildren().add(train.getImageView());
 		
+		RailwayTracks track2 = mapBuilder.getNewTrack("Katie");
+		Train train2 = new Train(track2.getEndX()+150, track2.getEndY()-20);
+		root.getChildren().add(train2.getImageView());
+		
 		for(CrossingGate gate: mapBuilder.getAllGates())
 			train.addObserver(gate);
 				
@@ -56,12 +60,17 @@ public class Simulation extends Application{
 			
 				createCar();
 				train.move();
+				train2.move();
 				
 				for(CrossingGate gate: mapBuilder.getAllGates())
 					gate.operateGate();
 				
 				if (train.offScreen())
 					train.reset();
+				
+				if (train2.offScreen()) {
+					train2.reset();
+				}
 						
 				clearCars();				
 			}
