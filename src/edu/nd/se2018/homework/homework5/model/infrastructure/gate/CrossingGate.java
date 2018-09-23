@@ -21,8 +21,8 @@ public class CrossingGate extends Observable implements Observer{
 	private int anchorY;
 	private int movingX;
 	private int movingY;
-	private int triggerPoint;
-	private int exitPoint;
+	private int rightPoint;
+	private int leftPoint;
 
 	private IGateState gateClosed;
 	private IGateState gateOpen;
@@ -31,7 +31,9 @@ public class CrossingGate extends Observable implements Observer{
 	private IGateState currentGateState;
 	private Line line; 
 	private Pane root;
-	
+	private boolean gateDown = true;
+	double currentTrain1pos = 1300.0;		//east->west train
+	double currentTrain2pos = 0.0;			//west->east train
 	String gateName;
 	
 	public CrossingGate(){}
@@ -41,8 +43,8 @@ public class CrossingGate extends Observable implements Observer{
 		anchorY = yPosition;
 		movingX = anchorX;
 		movingY = anchorY-60;
-		triggerPoint = anchorX+250;
-		exitPoint = anchorX-250;
+		rightPoint = anchorX+200;
+		leftPoint = anchorX-200;
 		
 		// Gate elements
 		line = new Line(anchorX, anchorY,movingX,movingY);
@@ -118,13 +120,30 @@ public class CrossingGate extends Observable implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
+
 		if (o instanceof Train){
 			Train train = (Train)o;
-			if (train.getVehicleX() < exitPoint)
-				currentGateState.leaveStation();
-			else if(train.getVehicleX() < triggerPoint){
+			if (train.originalX < 200) {	//this is the train going west->east
+				currentTrain2pos = train.getVehicleX();
+			}
+			if (train.originalX > 200) {	//this is the train going east->west
+				currentTrain1pos = train.getVehicleX();
+			}
+		
+			if (currentTrain1pos > leftPoint && currentTrain1pos < rightPoint) {
 				currentGateState.approachStation();
-			} 
-		}	
+			}
+			if (currentTrain2pos > leftPoint && currentTrain2pos < rightPoint) {
+				currentGateState.approachStation();
+			}
+			if (currentTrain1pos < leftPoint || currentTrain1pos > rightPoint) {
+				if (currentTrain2pos < leftPoint || currentTrain2pos > rightPoint) {
+					currentGateState.leaveStation();
+				}
+			}
+							
+			
+		}
+		
 	}
 }

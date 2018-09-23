@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 public class Train extends Observable implements IVehicle{
 	private double currentX = 0;
 	private double currentY = 0;
-	private double originalX = 0;
+	public double originalX = 0;
 	private Image img;
 	private ImageView imgView;
 	private int trainLength = 35;

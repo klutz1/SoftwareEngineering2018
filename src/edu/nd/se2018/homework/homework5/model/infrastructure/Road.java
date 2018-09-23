@@ -76,7 +76,7 @@ public class Road {
 	
 	public void addNumCarsToRoad() {
 		this.numCarsOnRoad++;
-		System.out.println("Numer of cars on road: "+ this.numCarsOnRoad);
+		//System.out.println("Numer of cars on road: "+ this.numCarsOnRoad);
 	}
 	
 	public Direction getDirection(){

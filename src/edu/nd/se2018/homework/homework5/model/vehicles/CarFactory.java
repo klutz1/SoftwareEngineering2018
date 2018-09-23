@@ -38,11 +38,10 @@ public class CarFactory {
 			
 			//determine if this car can move left 
 			if (location.x > 700) {
-				if (Math.random()*10 < 3) {
+				if (Math.random()*10 < 2) {
 					car.assignLeftMover();
 				}
 			}
-			
 			
 			// All cars created by this factory must be aware of crossing gates in the road
 			for(CrossingGate gate: gates){

@@ -49,8 +49,11 @@ public class Simulation extends Application{
 		Train train2 = new Train(0, track2.getEndY()-20);
 		root.getChildren().add(train2.getImageView());
 		
-		for(CrossingGate gate: mapBuilder.getAllGates())
+		for(CrossingGate gate: mapBuilder.getAllGates()) {
 			train.addObserver(gate);
+			train2.addObserver(gate);
+		}
+			
 				
 		// Sets up a repetitive loop i.e., in handle that runs the actual simulation
 		new AnimationTimer(){

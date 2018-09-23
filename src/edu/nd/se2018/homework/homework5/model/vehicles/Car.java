@@ -72,16 +72,15 @@ public class Car extends Observable implements IVehicle, Observer{
 		if (leadCarY != -1  && getDistanceToLeadCar() < 50)
 			canMoveVertical = false;
 		
-		if (this.leftMover = true) {
+//		if (leftMover = true) {
 			
-			//System.out.println("the problem is here");
-			if (getVehicleY() < 300 && getVehicleY() > 295) {
-				canMoveVertical = false;
-				currentX -= speed;
-				ivCar.setX(currentX);
-			}
+//			if (getVehicleY() < 300 && getVehicleY() > 295) {
+//				canMoveVertical = false;
+//				currentX -= speed;
+//				ivCar.setX(currentX);
+//			}
 
-		}
+//		}
 		
 		if (canMoveVertical) {
 			currentY+=speed;
