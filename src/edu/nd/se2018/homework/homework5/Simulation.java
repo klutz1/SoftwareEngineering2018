@@ -46,7 +46,7 @@ public class Simulation extends Application{
 		root.getChildren().add(train.getImageView());
 		
 		RailwayTracks track2 = mapBuilder.getNewTrack("Katie");
-		Train train2 = new Train(track2.getEndX()+150, track2.getEndY()-20);
+		Train train2 = new Train(0, track2.getEndY()-20);
 		root.getChildren().add(train2.getImageView());
 		
 		for(CrossingGate gate: mapBuilder.getAllGates())
@@ -60,7 +60,7 @@ public class Simulation extends Application{
 			
 				createCar();
 				train.move();
-				train2.move();
+				train2.moveWesttoEast();
 				
 				for(CrossingGate gate: mapBuilder.getAllGates())
 					gate.operateGate();
