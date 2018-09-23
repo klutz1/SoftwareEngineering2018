@@ -66,6 +66,7 @@ public class CarFactory {
 	// 1.  Loop through the list and identify which cars are off the screen.  Add them to 'toDelete' array.
 	// 2.  Iterate through toDelete and remove the cars from the original arrayList.
 	public ArrayList<Car> removeOffScreenCars() {
+		
 		// Removing cars from the array list.
 		ArrayList<Car> toDelete = new ArrayList<Car>();
 		for(Car car: cars){
