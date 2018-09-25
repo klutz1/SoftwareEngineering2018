@@ -123,6 +123,7 @@ public class CrossingGate extends Observable implements Observer{
 
 		if (o instanceof Train){
 			Train train = (Train)o;
+			
 			if (train.originalX < 200) {	//this is the train going west->east
 				currentTrain2pos = train.getVehicleX();
 			}
@@ -141,8 +142,6 @@ public class CrossingGate extends Observable implements Observer{
 					currentGateState.leaveStation();
 				}
 			}
-							
-			
 		}
 		
 	}

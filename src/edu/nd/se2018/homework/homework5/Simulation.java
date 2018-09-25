@@ -39,7 +39,8 @@ public class Simulation extends Application{
 		stage.setTitle("Railways");
 		stage.setScene(scene);
 		stage.show();
-				
+		Collection<Road> roads = mapBuilder.getRoads();
+		
 		// Train
 		RailwayTracks track = mapBuilder.getTrack("Royal");
 		Train train = new Train(track.getEndX()+100,track.getEndY()-25);
@@ -57,7 +58,7 @@ public class Simulation extends Application{
 				
 		// Sets up a repetitive loop i.e., in handle that runs the actual simulation
 		new AnimationTimer(){
-
+			
 			@Override
 			public void handle(long now) {
 			
@@ -74,13 +75,27 @@ public class Simulation extends Application{
 				if (train2.offScreen()) {
 					train2.reset();
 				}
-						
+				
+				for (Road road: roads)	{
+					changeStuffCalledHere();
+				}
+				
 				clearCars();				
 			}
 		}.start();
 	}
 	
 	// Clears cars as they leave the simulation
+	
+	private void changeStuffCalledHere() {
+		Collection<Road> roads = mapBuilder.getRoads();
+		for(Road road: roads){			
+			if (road.getCarFactory()!= null){
+				road.getCarFactory().changeStuff();
+			}
+		}
+	}
+	
 	private void clearCars(){
 		Collection<Road> roads = mapBuilder.getRoads();
 		for(Road road: roads){			
@@ -97,7 +112,7 @@ public class Simulation extends Application{
 			if (road.getCarFactory() != null){
 				if ((int)(Math.random() * 100) == 15){
 					Car car = road.getCarFactory().buildCar();
-					road.addNumCarsToRoad();
+					
 					if (car != null){
 						root.getChildren().add(car.getImageView());
 					}

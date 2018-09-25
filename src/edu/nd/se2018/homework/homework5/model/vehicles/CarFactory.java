@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import edu.nd.se2018.homework.homework5.model.infrastructure.Direction;
+import edu.nd.se2018.homework.homework5.model.vehicles.Car;
 import edu.nd.se2018.homework.homework5.model.infrastructure.gate.CrossingGate;
+import java.util.Vector;
 
 /**
  * Very basic car factory.  Creates the car and registers it with the crossing gate and the car infront of it.
@@ -19,6 +21,10 @@ public class CarFactory {
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	Direction direction;
 	Point location;
+	int carCountOne = 0;
+	int carCountTwo = 1000;
+	Vector<Car> roadOneCars = new Vector<Car>();
+	Vector<Car> roadTwoCars = new Vector<Car>();
 	
 	public CarFactory(){}
 	
@@ -28,18 +34,33 @@ public class CarFactory {
 		this.gates = gates;
 	}
 	
-	
-	// Most code here is to create random speeds
+	// create random speed for car & assign as left mover if necessary
 	public Car buildCar(){
+		
 		if (previousCar == null || location.y < previousCar.getVehicleY()-100){
-			Car car = new Car(location.x,location.y);	
-			double speedVariable = (Math.random() * 10)/10;
-			car.setSpeed((2-speedVariable)*1.5); 
-			
-			//determine if this car can move left 
+			Car car = new Car(location.x,location.y, false);	
+	
 			if (location.x > 700) {
-				if (Math.random()*10 < 2) {
-					car.assignLeftMover();
+				car.identifier = carCountTwo;
+				carCountTwo++;
+				roadTwoCars.add(car);
+				
+			}
+			else {
+				car.identifier = carCountOne;
+				carCountOne++;
+				roadOneCars.add(car);
+				System.out.println("road one size:" + roadOneCars.size()); 
+			}
+			
+			double speedVariable = (Math.random() * 10)/10;
+			car.setSpeed((2-speedVariable)*0.75); 
+
+			// randomly determine if this car can move left 
+			if (location.x > 700) {
+				
+				if (Math.random()*10 < 3 && roadTwoCars.size() > 1) {
+						car.assignLeftMover();
 				}
 			}
 			
@@ -47,18 +68,60 @@ public class CarFactory {
 			for(CrossingGate gate: gates){
 				gate.addObserver(car);
 				if(gate != null && gate.getTrafficCommand()=="STOP")
-					car.setGateDownFlag(false);
+					car.setGateDownFlag(true);
 			}
 			
-			// Each car must observe the car infront of it so it doesn't collide with it.
+			// Each car must observe the car in front of it so it doesn't collide with it.
 			if (previousCar != null)
 				previousCar.addObserver(car);
 			previousCar = car;
 			
 			cars.add(car);
+			
 			return car;
 		} else 
 			return null;
+	}
+	
+	//function to change observers
+	public void changeStuff() {
+		Car tempCar;
+		for (int i = 0; i < roadTwoCars.size(); i++)  {
+
+			if (roadTwoCars.get(i).leftMover == true) {
+				
+				//delete observers once reached the point of crossing over
+				if (roadTwoCars.get(i).getVehicleY() > 593) {
+					tempCar = roadTwoCars.get(i);
+					
+					//remove the car behind it as an observer
+					if (roadTwoCars.size() - i >= 1) {
+						tempCar.deleteObservers();
+					}
+						
+					roadOneCars.add(roadTwoCars.get(i));
+					
+					System.out.println(roadOneCars.get(roadOneCars.size()-1).identifier);
+					System.out.println(this.roadOneCars.size());
+					//roadOneCars.get(roadOneCars.size()-2).addObserver(roadOneCars.get(roadOneCars.size() -1));
+					
+					roadTwoCars.remove(i);
+					
+					//change who the car is observing
+					if (roadTwoCars.size() > 1) {
+						if (i != 0 && i != roadTwoCars.size()) {
+							roadTwoCars.get(i-1).addObserver(roadTwoCars.get(i));					
+						}
+						else {
+							System.out.println("HEEEELLLPP");
+						}
+						
+					}
+					
+				}
+			}
+		
+		}
 	}
 
 	// We will get a concurrency error if we try to delete cars whilst iterating through the array list
@@ -71,12 +134,20 @@ public class CarFactory {
 		ArrayList<Car> toDelete = new ArrayList<Car>();
 		for(Car car: cars){
 			car.move();					
-			if (car.offScreen())
+			if (car.offScreen()) {
 				toDelete.add(car);
+			}
 			
 		}   
-		for (Car car: toDelete)
+		for (Car car: toDelete) {
+			if (car.identifier >= 1000) {
+				roadTwoCars.remove(car);
+			}
+			else {
+				roadOneCars.remove(car);
+			}
 			cars.remove(car);
+		}
 		return toDelete;
 	}
 }

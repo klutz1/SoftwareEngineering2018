@@ -5,11 +5,12 @@ import java.util.Collection;
 import java.util.Vector;
 
 import edu.nd.se2018.homework.homework5.model.infrastructure.gate.CrossingGate;
+import edu.nd.se2018.homework.homework5.model.vehicles.Car;
 import edu.nd.se2018.homework.homework5.model.vehicles.CarFactory;
 
 /**
  * Represents a single road
- * @author jane
+ * 
  *
  */
 public class Road {
@@ -22,7 +23,7 @@ public class Road {
 	Collection<CrossingGate> gates;
 	boolean clearEnds = false;
 	int roadSize;
-	int numCarsOnRoad;
+	
 	
 	public Road(){}
 	
@@ -74,10 +75,6 @@ public class Road {
 		return endY;
 	} 
 	
-	public void addNumCarsToRoad() {
-		this.numCarsOnRoad++;
-		//System.out.println("Numer of cars on road: "+ this.numCarsOnRoad);
-	}
 	
 	public Direction getDirection(){
 		return direction;
