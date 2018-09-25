@@ -44,13 +44,11 @@ public class CarFactory {
 				car.identifier = carCountTwo;
 				carCountTwo++;
 				roadTwoCars.add(car);
-				
 			}
 			else {
 				car.identifier = carCountOne;
 				carCountOne++;
 				roadOneCars.add(car);
-				System.out.println("road one size:" + roadOneCars.size()); 
 			}
 			
 			double speedVariable = (Math.random() * 10)/10;
@@ -58,7 +56,6 @@ public class CarFactory {
 
 			// randomly determine if this car can move left 
 			if (location.x > 700) {
-				
 				if (Math.random()*10 < 3 && roadTwoCars.size() > 1) {
 						car.assignLeftMover();
 				}
@@ -84,7 +81,7 @@ public class CarFactory {
 	}
 	
 	//function to change observers
-	public void changeStuff() {
+	public void changeTrainMovement() {
 		Car tempCar;
 		for (int i = 0; i < roadTwoCars.size(); i++)  {
 
@@ -100,11 +97,7 @@ public class CarFactory {
 					}
 						
 					roadOneCars.add(roadTwoCars.get(i));
-					
-					System.out.println(roadOneCars.get(roadOneCars.size()-1).identifier);
-					System.out.println(this.roadOneCars.size());
-					//roadOneCars.get(roadOneCars.size()-2).addObserver(roadOneCars.get(roadOneCars.size() -1));
-					
+										
 					roadTwoCars.remove(i);
 					
 					//change who the car is observing
@@ -113,14 +106,11 @@ public class CarFactory {
 							roadTwoCars.get(i-1).addObserver(roadTwoCars.get(i));					
 						}
 						else {
-							System.out.println("HEEEELLLPP");
-						}
-						
+							roadTwoCars.get(i).continueMoving = true;
+						}	
 					}
-					
 				}
 			}
-		
 		}
 	}
 
@@ -137,7 +127,6 @@ public class CarFactory {
 			if (car.offScreen()) {
 				toDelete.add(car);
 			}
-			
 		}   
 		for (Car car: toDelete) {
 			if (car.identifier >= 1000) {

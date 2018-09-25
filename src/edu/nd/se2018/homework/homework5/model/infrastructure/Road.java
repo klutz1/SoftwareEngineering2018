@@ -75,7 +75,6 @@ public class Road {
 		return endY;
 	} 
 	
-	
 	public Direction getDirection(){
 		return direction;
 	}

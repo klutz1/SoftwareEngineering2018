@@ -47,7 +47,7 @@ public class Simulation extends Application{
 		root.getChildren().add(train.getImageView());
 		
 		RailwayTracks track2 = mapBuilder.getNewTrack("Katie");
-		Train train2 = new Train(0, track2.getEndY()-20);
+		Train train2 = new Train(-100, track2.getEndY()-20);
 		root.getChildren().add(train2.getImageView());
 		
 		for(CrossingGate gate: mapBuilder.getAllGates()) {
@@ -77,7 +77,7 @@ public class Simulation extends Application{
 				}
 				
 				for (Road road: roads)	{
-					changeStuffCalledHere();
+					changeMovements();
 				}
 				
 				clearCars();				
@@ -87,11 +87,11 @@ public class Simulation extends Application{
 	
 	// Clears cars as they leave the simulation
 	
-	private void changeStuffCalledHere() {
+	private void changeMovements() {
 		Collection<Road> roads = mapBuilder.getRoads();
 		for(Road road: roads){			
 			if (road.getCarFactory()!= null){
-				road.getCarFactory().changeStuff();
+				road.getCarFactory().changeTrainMovement();
 			}
 		}
 	}
