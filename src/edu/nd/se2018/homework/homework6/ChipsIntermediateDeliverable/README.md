@@ -13,5 +13,3 @@ Completed features:
 (3) Chip moves up, down, left, and right appropriately
 (4) when Chip encounters a wall, he cannot walk through it                                                              
 
-
-**NOTE: due to my absence last week due to the Grace Hopper Celebration (September 25-28), more steps will be completed by October 5 **
