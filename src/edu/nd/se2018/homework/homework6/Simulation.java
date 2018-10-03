@@ -25,8 +25,8 @@ public class Simulation extends Application {
 	MapBuilder theMap;
 	Chip chip;
 	
-	Image chipImage;
-	ImageView chipImageView;
+	Image chipImage, endImage;
+	ImageView chipImageView, endImageView;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -59,6 +59,12 @@ public class Simulation extends Application {
 		chipImageView.setX(theMap.getShipLocation(chip).x*scalingFactor);
 		chipImageView.setY(theMap.getShipLocation(chip).y*scalingFactor);
 		root.getChildren().add(chipImageView);
+		
+		Image endImage = new Image("images\\endPoint.PNG", scalingFactor, scalingFactor, true, true);
+		endImageView = new ImageView(endImage);
+		endImageView.setX(10*scalingFactor);
+		endImageView.setY(10*scalingFactor);
+		root.getChildren().add(endImageView);
 	}
 	
 	private void startMoving(Scene scene) {
@@ -84,7 +90,6 @@ public class Simulation extends Application {
 					break;
 			
 				}
-			
 				chipImageView.setX(theMap.getShipLocation(chip).x*scalingFactor);
 				chipImageView.setY(theMap.getShipLocation(chip).y*scalingFactor);
 			}
