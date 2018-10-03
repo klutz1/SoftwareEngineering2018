@@ -18,7 +18,7 @@ public class Simulation extends Application {
 
 	//25 x 25 grid of squares
 	final int dimensions = 25;		
-	final int scalingFactor = 50;
+	final int scalingFactor = 35;
 	
 	Pane root;
 	Scene scene;
@@ -29,13 +29,13 @@ public class Simulation extends Application {
 	ImageView chipImageView;
 	
 	@Override
-	public void start(Stage oceanStage) throws Exception {
+	public void start(Stage stage) throws Exception {
 		theMap = new MapBuilder(dimensions);
 		
 		root = new AnchorPane();
 		theMap.drawMap(root.getChildren());
 		
-		scene = new Scene(root, 500, 500);
+		scene = new Scene(root, 875, 875);
 		Point startPosition = theMap.getStartPoint();
 		
 		//ship starts in a random location not on an island
@@ -44,23 +44,21 @@ public class Simulation extends Application {
 		//call the function to place images on the grid
 		loadImages();
 		
-		oceanStage.setTitle("Chip's Challenge");
-		oceanStage.setScene(scene);
-		oceanStage.show();
+		stage.setTitle("Chip's Challenge");
+		stage.setScene(scene);
+		stage.show();
 		
 		startMoving(scene);
 	
 	}
 	
 	public void loadImages() {
-		
 		//add the Columbus image to the ImageView
-		Image chipImage = new Image("images\\blueCar.png", 50, 50, true, true);
+		Image chipImage = new Image("images\\chipRight.png", scalingFactor, scalingFactor, true, true);
 		chipImageView = new ImageView(chipImage);
 		chipImageView.setX(theMap.getShipLocation(chip).x*scalingFactor);
 		chipImageView.setY(theMap.getShipLocation(chip).y*scalingFactor);
 		root.getChildren().add(chipImageView);
-		
 	}
 	
 	private void startMoving(Scene scene) {

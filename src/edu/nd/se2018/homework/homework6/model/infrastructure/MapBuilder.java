@@ -15,14 +15,13 @@ import javafx.scene.shape.Rectangle;
 public class MapBuilder {
 	final int size = 25;
 	
-	public int[][] oceanGrid = new int[25][25];
+	public int[][] theGrid = new int[25][25];
 	
-	final int scale = 50;
+	final int scale = 35;
 	
 	private int startingX;
 	private int startingY;
-	private int p1x;
-	private int p1y;
+
 	ObservableList<Node> root;
 		
 	//Constructor
@@ -35,7 +34,7 @@ public class MapBuilder {
 		//first, initialize all grid values to zero
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				oceanGrid[i][j] = 0;
+				theGrid[i][j] = 0;
 			}
 		}
 		
@@ -43,7 +42,7 @@ public class MapBuilder {
 			for (int d = 0; d < size; d++) {
 				Rectangle rect = new Rectangle(h*scale, d*scale, scale, scale);
 				rect.setStroke(Color.BLACK);
-				if (oceanGrid[h][d] == 2) {
+				if (theGrid[h][d] == 2) {
 					rect.setFill(Color.DARKGRAY);
 					root.add(rect);
 				}
@@ -66,7 +65,7 @@ public class MapBuilder {
 		while (!placed) {
 			int x = rand.nextInt(9);
 			int y = rand.nextInt(9);
-			if (oceanGrid[x][y] == 0) {
+			if (theGrid[x][y] == 0) {
 				startingX = x;
 				startingY = y;
 				return new Point(x, y);
