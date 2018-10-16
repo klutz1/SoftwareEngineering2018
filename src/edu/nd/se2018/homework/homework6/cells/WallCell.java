@@ -44,4 +44,10 @@ public class WallCell implements CellType {
 		return false;
 	}
 
+	@Override
+	public int isPiece() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

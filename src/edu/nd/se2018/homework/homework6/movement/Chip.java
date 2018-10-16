@@ -41,14 +41,20 @@ public class Chip {
 	public edu.nd.se2018.homework.homework6.cells.ChipCell getCell() {
 		return currCell; 
 	}
-	
+
+	public Point getChipsPosition() {
+		return chipsPosition;
+	}
 	
 	public void moveChip(KeyEvent keyPressed, Pane root, MapBuilder theMap) {
-//		theMap = MapBuilder.returnOnlyMap();
 		
 		theMap.setCell(new OpenCell(chipsPosition.x, chipsPosition.y));
 		
+		
+		//add chip to the new location
 		root.getChildren().add(theMap.getCell(chipsPosition.x, chipsPosition.y).getImageView());
+		
+		theMap.setCell(new OpenCell(chipsPosition.x, chipsPosition.y));
 		
 		switch (keyPressed.getCode()) {
 		case UP: 
@@ -78,6 +84,9 @@ public class Chip {
 	
 	public Point goUp(MapBuilder theMap) {
 		if (chipsPosition.y-1 > 0 && theMap.getCell(chipsPosition.x, chipsPosition.y-1).canBeWalkedOn()) {
+			if (theMap.getCell(chipsPosition.x, chipsPosition.y-1).isPiece() == 1) {
+				theMap.decrementPiecesRemaining();
+			}
 			return new Point(chipsPosition.x, chipsPosition.y-1);
 		}
 		else {
@@ -87,6 +96,9 @@ public class Chip {
 	
 	public Point goDown(MapBuilder theMap) {
 		if (chipsPosition.y+1 < 24 && theMap.getCell(chipsPosition.x, chipsPosition.y+1).canBeWalkedOn()) {
+			if (theMap.getCell(chipsPosition.x, chipsPosition.y+1).isPiece() == 1) {
+				theMap.decrementPiecesRemaining();
+			}
 			return new Point(chipsPosition.x, chipsPosition.y+1);
 		}
 		else {
@@ -96,6 +108,9 @@ public class Chip {
 	
 	public Point goRight(MapBuilder theMap) {
 		if (chipsPosition.x+1 > 0 && theMap.getCell(chipsPosition.x+1, chipsPosition.y).canBeWalkedOn()) {
+			if (theMap.getCell(chipsPosition.x+1, chipsPosition.y).isPiece() == 1) {
+				theMap.decrementPiecesRemaining();
+			}
 			return new Point(chipsPosition.x+1, chipsPosition.y);
 		}
 		else {
@@ -105,6 +120,9 @@ public class Chip {
 	
 	public Point goLeft(MapBuilder theMap) {
 		if (chipsPosition.x-1 > 0 && theMap.getCell(chipsPosition.x-1, chipsPosition.y).canBeWalkedOn()) {
+			if (theMap.getCell(chipsPosition.x-1, chipsPosition.y).isPiece() == 1) {
+				theMap.decrementPiecesRemaining();
+			}
 			return new Point(chipsPosition.x-1, chipsPosition.y);
 		}
 		else {

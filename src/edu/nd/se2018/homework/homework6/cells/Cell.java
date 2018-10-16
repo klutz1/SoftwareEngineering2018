@@ -5,7 +5,7 @@ public enum Cell {
 //	WATERCELL,
 	WINNINGCELL,  
 	WALLCELL,
-//	PIECECELL,
+	PIECECELL,
 //	PORTALCELL,
 	CHIPCELL,
 }

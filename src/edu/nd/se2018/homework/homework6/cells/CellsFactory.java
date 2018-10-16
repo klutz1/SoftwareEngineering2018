@@ -21,8 +21,12 @@ public class CellsFactory {
 		case WINNINGCELL:
 			theMap.setCell(new WinningCell(iPos, jPos));
 			break;
-		}
 		
+		case PIECECELL:
+			theMap.setCell(new PieceCell(iPos, jPos));
+			break;
+		}	
+	
 		
 	}
 

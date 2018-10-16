@@ -9,4 +9,5 @@ public interface CellType {
 	public abstract int getY();
 	public abstract ImageView getImageView();
 	public abstract boolean canBeWalkedOn();
+	public abstract int isPiece();
 }

@@ -43,4 +43,10 @@ public class OpenCell implements CellType {
 	public boolean canBeWalkedOn() {
 		return true;
 	}
+
+	@Override
+	public int isPiece() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

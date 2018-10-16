@@ -10,7 +10,9 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 import edu.nd.se2018.homework.homework6.movement.Chip;
 import edu.nd.se2018.homework.homework6.movement.LevelOne;
+import edu.nd.se2018.homework.homework6.movement.LevelTwo;
 import edu.nd.se2018.homework.homework6.movement.MapBuilder;
+import edu.nd.se2018.homework.homework6.states.*;
 
 public class Main extends Application {
 
@@ -20,6 +22,8 @@ public class Main extends Application {
 	Scene scene;
 	private MapBuilder theMap;
 	MapBuilder overallMap = null;
+	private int currentLevel = 0;
+	StateImplementation currState;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -32,7 +36,10 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.show();
 		
+		currState = new StateImplementation();
+		
 		startLevelOne();
+		currentLevel = 1;
 		overallMap = MapBuilder.returnOnlyMap();
 		startMoving(scene);
 	}
@@ -49,11 +56,17 @@ public class Main extends Application {
 					theStage.close();
 				}
 				else {
-					
 					chip.moveChip(ke, root, theMap);
 				}
-				if(ke.getCode() == KeyCode.B) {
+				
+				System.out.println(theMap.getPieces());
+				int temp = currState.getState(theMap.getPieces());
+				
+				
+				//change the level when enough pieces are gathered
+				if(temp == 2 && currentLevel == 1 && chip.getChipsPosition().x == 23 && chip.getChipsPosition().y == 23) {
 					updateLevel();
+					currentLevel = 2;
 				}
 			}
 		 	
@@ -69,8 +82,8 @@ public class Main extends Application {
 	
 	public void updateLevel() {
 		root.getChildren().clear();
-	//	theMap = new LevelTwo(root).drawLevel();
-		
+		this.theMap = new LevelTwo(root).drawLevel();
+		chip = Chip.getOnlyChip();
 	};
 	
 	

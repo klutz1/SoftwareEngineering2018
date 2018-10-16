@@ -43,5 +43,11 @@ public class ChipCell implements CellType {
 	public boolean canBeWalkedOn() {
 		return true;
 	}
+
+	@Override
+	public int isPiece() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
