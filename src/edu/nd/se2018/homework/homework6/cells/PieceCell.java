@@ -49,4 +49,9 @@ public class PieceCell implements CellType {
 		return 1;
 	}
 
+	@Override
+	public int isPortal() {
+		return 0;
+	}
+
 }

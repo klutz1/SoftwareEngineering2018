@@ -45,7 +45,11 @@ public class WinningCell implements CellType {
 
 	@Override
 	public int isPiece() {
-		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int isPortal() {
 		return 0;
 	}
 }

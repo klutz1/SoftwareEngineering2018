@@ -6,6 +6,6 @@ public enum Cell {
 	WINNINGCELL,  
 	WALLCELL,
 	PIECECELL,
-//	PORTALCELL,
+	PORTALCELL,
 	CHIPCELL,
 }

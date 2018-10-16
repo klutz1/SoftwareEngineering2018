@@ -73,6 +73,7 @@ public class Main extends Application {
 		});
 	}
 		
+	
 	public void startLevelOne() {
 		root.getChildren().clear();
 		this.theMap = new LevelOne(root).drawLevel();

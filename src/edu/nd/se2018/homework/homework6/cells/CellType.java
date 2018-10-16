@@ -10,4 +10,5 @@ public interface CellType {
 	public abstract ImageView getImageView();
 	public abstract boolean canBeWalkedOn();
 	public abstract int isPiece();
+	public abstract int isPortal();
 }

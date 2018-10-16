@@ -2,9 +2,7 @@ package edu.nd.se2018.homework.homework6.movement;
 
 import java.awt.Point;
 
-import edu.nd.se2018.homework.homework6.cells.CellType;
-import edu.nd.se2018.homework.homework6.cells.ChipCell;
-import edu.nd.se2018.homework.homework6.cells.OpenCell;
+import edu.nd.se2018.homework.homework6.cells.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -49,6 +47,7 @@ public class Chip {
 	public void moveChip(KeyEvent keyPressed, Pane root, MapBuilder theMap) {
 		
 		theMap.setCell(new OpenCell(chipsPosition.x, chipsPosition.y));
+		theMap.setCell(new WinningCell(23,23));
 		
 		
 		//add chip to the new location
@@ -82,11 +81,17 @@ public class Chip {
 		return this.chipImageView;
 	}
 	
+	
+	//move Chip up if possible
 	public Point goUp(MapBuilder theMap) {
 		if (chipsPosition.y-1 > 0 && theMap.getCell(chipsPosition.x, chipsPosition.y-1).canBeWalkedOn()) {
 			if (theMap.getCell(chipsPosition.x, chipsPosition.y-1).isPiece() == 1) {
 				theMap.decrementPiecesRemaining();
 			}
+			else if (theMap.getCell(chipsPosition.x, chipsPosition.y-1).isPortal() == 1) {
+				chipsPosition = portalBehavior(chipsPosition, 1);
+			}
+			
 			return new Point(chipsPosition.x, chipsPosition.y-1);
 		}
 		else {
@@ -94,6 +99,7 @@ public class Chip {
 		}
 	}
 	
+	//move Chip down if possible
 	public Point goDown(MapBuilder theMap) {
 		if (chipsPosition.y+1 < 24 && theMap.getCell(chipsPosition.x, chipsPosition.y+1).canBeWalkedOn()) {
 			if (theMap.getCell(chipsPosition.x, chipsPosition.y+1).isPiece() == 1) {
@@ -106,6 +112,8 @@ public class Chip {
 		}
 	}
 	
+	
+	//move Chip to the right if possible
 	public Point goRight(MapBuilder theMap) {
 		if (chipsPosition.x+1 > 0 && theMap.getCell(chipsPosition.x+1, chipsPosition.y).canBeWalkedOn()) {
 			if (theMap.getCell(chipsPosition.x+1, chipsPosition.y).isPiece() == 1) {
@@ -118,6 +126,7 @@ public class Chip {
 		}
 	}
 	
+	//move Chip to the left if possible
 	public Point goLeft(MapBuilder theMap) {
 		if (chipsPosition.x-1 > 0 && theMap.getCell(chipsPosition.x-1, chipsPosition.y).canBeWalkedOn()) {
 			if (theMap.getCell(chipsPosition.x-1, chipsPosition.y).isPiece() == 1) {
@@ -128,6 +137,18 @@ public class Chip {
 		else {
 			return chipsPosition; 
 		}
+	}
+	
+	
+	public Point portalBehavior(Point pt, int dir) {
+	//dir: 1 is up, 2 is down, 3 is right, 4 is right
+		Point temp;
+		temp = new Point(8, 8);
+		if (pt.x == 3 && pt.y == 4) {
+			temp.x = 3;
+			temp.y = 16;
+		}
+		return temp;
 	}
 	
 }

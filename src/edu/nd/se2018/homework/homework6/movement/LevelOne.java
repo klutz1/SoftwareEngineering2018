@@ -18,57 +18,12 @@ public class LevelOne {
 	};
 	
 	private void convertToView() {
-	/*	for (int i = 0; i < 25; i++) {
-			for (int j = 0; j < 25; j++) {
-				if (i == 0 || j == 0 || i == 24 || j == 24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i == 4 && j < 10 && j != 0) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i == 9 && j < 15 && j != 0) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i == 16 && j > 3 && j != 24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i > 0 && i < 4 && j != 0 && j != 24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i == 23 && j == 23) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i > 9 && i < 16 && j != 0 && j != 24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i > 4 && i < 9 && j != 0 && j != 24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i > 16 && i < 23 && j != 0 && j != 24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i == 23 && j != 0 && j < 23) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i == 4 && j >9 &&j !=24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				if (i == 9 && j > 14 && j != 24) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-				
-				if (i == 16 && j < 4 && j != 0) {
-					this.root.getChildren().add(levelOneMap.getCell(i,j).getImageView());
-				}
-			}
-		}*/
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 25; j++) {
 				this.root.getChildren().add(levelOneMap.getCell(i, j).getImageView());
 			}
 		}
 	}
-	
 	
 	public MapBuilder drawLevel() { 
 		levelOneMap = MapBuilder.returnOnlyMap();
@@ -96,6 +51,19 @@ public class LevelOne {
 					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelOneMap);
 					this.totalPlacedPieces++;
 				}
+				else if (j == 9) {
+					this.theFactory.drawCell(i, j, Cell.WALLCELL, levelOneMap);
+				}
+				else if (j == 14 && i < 13) {
+					this.theFactory.drawCell(i, j, Cell.WALLCELL, levelOneMap);
+				}
+				else if (i == 13 && j > 13) {
+					this.theFactory.drawCell(i, j, Cell.WALLCELL, levelOneMap);
+				}
+				
+				else if (i == 3 && j == 3) {
+					this.theFactory.drawCell(i, j, Cell.PORTALCELL, levelOneMap);
+				}
 				else {
 					this.theFactory.drawCell(i, j, Cell.OPENCELL, levelOneMap);
 				}
@@ -113,7 +81,6 @@ public class LevelOne {
 		root.getChildren().add(chip.getImageView());
 		
 		return levelOneMap;
-		
 	}
 	
 }

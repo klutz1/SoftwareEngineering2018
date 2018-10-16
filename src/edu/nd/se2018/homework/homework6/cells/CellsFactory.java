@@ -25,8 +25,10 @@ public class CellsFactory {
 		case PIECECELL:
 			theMap.setCell(new PieceCell(iPos, jPos));
 			break;
-		}	
-	
+		case PORTALCELL:
+			theMap.setCell(new PortalCell(iPos, jPos));
+			break;
+		}
 		
 	}
 
