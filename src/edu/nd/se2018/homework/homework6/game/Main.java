@@ -19,6 +19,7 @@ public class Main extends Application {
 	Pane root;
 	Scene scene;
 	private MapBuilder theMap;
+	MapBuilder overallMap = null;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -32,6 +33,7 @@ public class Main extends Application {
 		stage.show();
 		
 		startLevelOne();
+		overallMap = MapBuilder.returnOnlyMap();
 		startMoving(scene);
 	}
 	
@@ -47,7 +49,8 @@ public class Main extends Application {
 					theStage.close();
 				}
 				else {
-					chip.moveChip(ke, root);
+					
+					chip.moveChip(ke, root, theMap);
 				}
 				if(ke.getCode() == KeyCode.B) {
 					updateLevel();
@@ -59,7 +62,7 @@ public class Main extends Application {
 		
 	public void startLevelOne() {
 		root.getChildren().clear();
-		theMap = new LevelOne(root).drawLevel();
+		this.theMap = new LevelOne(root).drawLevel();
 		chip = Chip.getOnlyChip();
 	}
 	
