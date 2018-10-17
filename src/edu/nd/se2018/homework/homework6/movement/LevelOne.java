@@ -28,7 +28,6 @@ public class LevelOne {
 	public MapBuilder drawLevel() { 
 		levelOneMap = MapBuilder.returnOnlyMap();
 		
-		
 		//code responsible for designing the current map
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 25; j++) {
@@ -60,8 +59,35 @@ public class LevelOne {
 				else if (i == 13 && j > 13) {
 					this.theFactory.drawCell(i, j, Cell.WALLCELL, levelOneMap);
 				}
-				
+				else if (i == 2 && j == 6) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelOneMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i  == 20 && j == 7) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelOneMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 7 && j == 20) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelOneMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 22 && j == 12) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelOneMap);
+					this.totalPlacedPieces++;
+				}
 				else if (i == 3 && j == 3) {
+					this.theFactory.drawCell(i, j, Cell.PORTALCELL, levelOneMap);
+				}
+				else if(i == 7 && j == 21) {
+					this.theFactory.drawCell(i, j, Cell.PORTALCELL, levelOneMap);
+				}
+				else if (i == 4 && j == 11) {
+					this.theFactory.drawCell(i, j, Cell.PORTALCELL, levelOneMap);
+				}
+				else if (i == 22 && j == 5) {
+					this.theFactory.drawCell(i, j, Cell.PORTALCELL, levelOneMap);
+				}
+				else if (i == 6 && j == 19) {
 					this.theFactory.drawCell(i, j, Cell.PORTALCELL, levelOneMap);
 				}
 				else {

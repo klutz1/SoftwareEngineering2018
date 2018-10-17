@@ -59,12 +59,19 @@ public class Main extends Application {
 					chip.moveChip(ke, root, theMap);
 				}
 				
-				System.out.println(theMap.getPieces());
 				int temp = currState.getState(theMap.getPieces());
 				
 				
 				//change the level when enough pieces are gathered
 				if(temp == 2 && currentLevel == 1 && chip.getChipsPosition().x == 23 && chip.getChipsPosition().y == 23) {
+					updateLevel();
+					currentLevel = 2;
+				}
+				else if (temp == 2 && currentLevel == 2 && chip.getChipsPosition().x == 23 && chip.getChipsPosition().y == 23) {
+					System.out.println("YOU BEAT THE GAME");
+					theStage.close();
+				}
+				else if (ke.getCode() == KeyCode.B) {
 					updateLevel();
 					currentLevel = 2;
 				}
