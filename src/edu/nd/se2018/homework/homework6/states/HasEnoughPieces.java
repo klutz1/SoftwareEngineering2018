@@ -3,11 +3,10 @@ package edu.nd.se2018.homework.homework6.states;
 
 public class HasEnoughPieces implements State {
 
-	StateImplementation currState;
+	private StateImplementation currState;
 	public HasEnoughPieces(StateImplementation curr) {
 		this.currState = curr;
 	}
-	
 	
 	@Override
 	public int incrementPiecesHeld(int currentPieces) {

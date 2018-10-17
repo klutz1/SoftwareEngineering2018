@@ -16,7 +16,7 @@ public class ChipCell implements CellType {
 		Image chipImage = new Image("images\\chipRight.png", 35, 35, true, true);
 		this.chipImageView = new ImageView(chipImage);
 		chipImageView.setX(pos.x*35);
-		chipImageView.setY(pos.y*35);
+		chipImageView.setY(pos.y*35); 
 	}
 	
 	@Override

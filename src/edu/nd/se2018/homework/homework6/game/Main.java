@@ -61,7 +61,6 @@ public class Main extends Application {
 				
 				int temp = currState.getState(theMap.getPieces());
 				
-				
 				//change the level when enough pieces are gathered
 				if(temp == 2 && currentLevel == 1 && chip.getChipsPosition().x == 23 && chip.getChipsPosition().y == 23) {
 					updateLevel();
@@ -71,6 +70,7 @@ public class Main extends Application {
 					System.out.println("YOU BEAT THE GAME");
 					theStage.close();
 				}
+				
 				else if (ke.getCode() == KeyCode.B) {
 					updateLevel();
 					currentLevel = 2;

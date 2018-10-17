@@ -2,7 +2,7 @@ package edu.nd.se2018.homework.homework6.states;
 
 public class NeedsMorePieces implements State {
 
-	StateImplementation currState;
+	private StateImplementation currState;
 	public NeedsMorePieces(StateImplementation curr) {
 		this.currState = curr;
 	}
@@ -21,15 +21,12 @@ public class NeedsMorePieces implements State {
 		}
 		else
 			return 0;
-		
 	}
-	
 	
 	@Override
 	public int resetPiecesHeld() {
 		// impossible: needs more pieces to complete level
 		return 0;
 	}
-	
 	
 }
