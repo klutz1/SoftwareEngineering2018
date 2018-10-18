@@ -6,7 +6,6 @@ import edu.nd.se2018.homework.homework6.cells.*;
 public class LevelTwo {
 	
 	private MapBuilder levelTwoMap;
-	
 	private CellsFactory theFactory;
 	private Pane root;
 	private int totalPlacedPieces = 0;
@@ -17,6 +16,7 @@ public class LevelTwo {
 	};
 	
 	
+	//display cell to screen
 	private void convertToView() {
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 25; j++) {
@@ -77,6 +77,34 @@ public class LevelTwo {
 					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
 					this.totalPlacedPieces++;
 				}
+				else if (i == 2 && j == 22) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 3 && j == 20) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 3 && j == 3) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 5 && j == 12) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 2 && j == 8) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 22 && j == 22) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
+					this.totalPlacedPieces++;
+				}
+				else if (i == 16 && j == 16) {
+					this.theFactory.drawCell(i, j, Cell.PIECECELL, levelTwoMap);
+					this.totalPlacedPieces++;
+				}
 				else {
 					this.theFactory.drawCell(i, j, Cell.OPENCELL, levelTwoMap);
 				}
@@ -84,10 +112,10 @@ public class LevelTwo {
 		}
 		
 		levelTwoMap.setPieces(this.totalPlacedPieces);
-		
-		//TODO: fix this
+	
 		convertToView();
 		
+		//place Chip on the original spot on the board
 		Chip chip = Chip.getOnlyChip(12, 12);
 		levelTwoMap.setCell(chip.getCell());
 		root.getChildren().add(chip.getImageView());

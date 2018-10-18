@@ -1,1 +1,1 @@
-test
+Directions to complete each level successfully are displayed in terminal.

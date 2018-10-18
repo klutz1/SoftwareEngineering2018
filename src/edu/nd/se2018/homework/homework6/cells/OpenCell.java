@@ -17,7 +17,7 @@ public class OpenCell implements CellType {
 		this.openImageView = new ImageView(openImage);
 		openImageView.setX(pos.x*35);
 		openImageView.setY(pos.y*35);
-	}
+	} 
 	
 	@Override
 	public void setCell(int i, int j) {

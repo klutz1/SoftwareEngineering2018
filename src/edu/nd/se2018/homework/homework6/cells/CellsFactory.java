@@ -17,7 +17,7 @@ public class CellsFactory {
 		case WALLCELL:
 			theMap.setCell(new WallCell(iPos, jPos));
 			break;
-		
+		 
 		case WINNINGCELL:
 			theMap.setCell(new WinningCell(iPos, jPos));
 			break;

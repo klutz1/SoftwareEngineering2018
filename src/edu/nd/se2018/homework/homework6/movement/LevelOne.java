@@ -99,7 +99,7 @@ public class LevelOne {
 		
 		levelOneMap.setPieces(totalPlacedPieces);
 		
-		//TODO: fix this
+		//place everything that has changed on the view
 		convertToView();
 		
 		Chip chip = Chip.getOnlyChip(2, 2);

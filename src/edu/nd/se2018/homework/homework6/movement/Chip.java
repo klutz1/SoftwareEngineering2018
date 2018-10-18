@@ -10,7 +10,6 @@ import javafx.scene.layout.Pane;
 
 public class Chip {
 	
-	MapBuilder theMap;
 	Point chipsPosition;
 	private static Chip onlyChip;
 	private edu.nd.se2018.homework.homework6.cells.ChipCell currCell;
@@ -26,9 +25,9 @@ public class Chip {
 		p = new Portal();
 		chipImageView.setX(yVal*35);
 		chipImageView.setY(xVal*35);
-	}
+	} 
 	 
-	//TODO: fix this
+	//Implementation of singleton design pattern
 	public static Chip getOnlyChip(final int x, final int y) {
 		onlyChip = new Chip(x, y);
 		return onlyChip;
@@ -46,17 +45,24 @@ public class Chip {
 		return chipsPosition;
 	}
 	
-	public void moveChip(KeyEvent keyPressed, Pane root, MapBuilder theMap) {
+	
+	public void moveChip(KeyEvent keyPressed, Pane root, MapBuilder theMap, int LevelNum) {
 		
-		theMap.setCell(new OpenCell(chipsPosition.x, chipsPosition.y));
+		//this implements the challenge of level 2
+		if (LevelNum == 1) {
+			theMap.setCell(new OpenCell(chipsPosition.x, chipsPosition.y));
+		}
+		else {
+			theMap.setCell(new WallCell(chipsPosition.x, chipsPosition.y));
+		}
 		
+		//place the winning cell
 		theMap.setCell(new WinningCell(23,23));
 		
 		
 		//add chip to the new location
 		root.getChildren().add(theMap.getCell(chipsPosition.x, chipsPosition.y).getImageView());
 		
-		theMap.setCell(new OpenCell(chipsPosition.x, chipsPosition.y));
 		
 		switch (keyPressed.getCode()) {
 			case UP: 
@@ -75,6 +81,7 @@ public class Chip {
 				break;
 		}
 		
+		//place Chip in his new cell
 		theMap.setCell(new edu.nd.se2018.homework.homework6.cells.ChipCell(chipsPosition.x, chipsPosition.y));
 		root.getChildren().add(theMap.getCell(chipsPosition.x, chipsPosition.y).getImageView());
 		
